@@ -1,0 +1,53 @@
+/* S-ELEVEN dashboard colours (employee console and dealer portal):
+   aqua #A8E8F9, deep blue #00537A, navy #013C58, amber #F5A201, light amber #FFBA42, yellow #FFD35B. Colours only: no layout is changed. */
+:root{
+  --aqua:#A8E8F9; --blue:#00537A; --navy:#013C58; --amber:#F5A201; --amber-2:#FFBA42; --yellow:#FFD35B;
+  --navy-950:#012a3f; --navy-900:#013C58; --navy-800:#00537A; --blue-700:#00537A; --blue-600:#0a6a98;
+  --sky-100:#dff5fb; --sky-50:#eefafd; --line:#bfe6f1; --ink:#012c42; --slate:#3d6275;
+}
+body,body:has(.vlayout){background:linear-gradient(180deg,#d9f4fb 0%,#A8E8F9 100%) fixed!important;color:var(--ink)}
+.vcontent{background:rgba(238,250,253,.92)!important}
+/* navigation (side and top): blue to navy, amber highlight */
+.vnav,.hnav{background:linear-gradient(180deg,#00537A 0%,#013C58 100%)!important;color:#eaf9fe}
+.hnav{background:linear-gradient(90deg,#013C58 0%,#00537A 55%,#013C58 100%)!important}
+.vnav .tabs a,.hnav a{color:#eaf9fe!important}
+.vnav .tabs a[aria-current="page"],.hnav a[aria-current="page"]{background:#F5A201!important;color:#013C58!important}
+.vnav .tabs a[aria-current="page"] .ni{background:linear-gradient(150deg,#FFD35B,#FFBA42 58%,#F5A201)!important;color:#013C58!important;border-color:rgba(255,255,255,.7)!important}
+.vnav .nbadge,.vnav .badge,.vnav .tabs a .nbadge{background:#FFD35B!important;color:#013C58!important}
+.vnav .tabs a[aria-current="page"] .nbadge{background:#013C58!important;color:#FFD35B!important}
+.hnav a:hover{background:rgba(255,211,91,.2)!important;color:#fff!important}
+/* buttons */
+.btn,.btn:not(.ghost):not(.blue):not(.sm.use){background:linear-gradient(180deg,#0a6a98,#00537A)!important;color:#fff!important;box-shadow:0 8px 18px -8px rgba(0,83,122,.65)!important}
+.btn.blue{background:linear-gradient(180deg,#FFBA42,#F5A201)!important;color:#013C58!important;box-shadow:0 8px 18px -8px rgba(245,162,1,.6)!important}
+.btn.ghost{background:#ffffff!important;color:#00537A!important;border:1.5px solid rgba(0,83,122,.4)!important;box-shadow:none!important}
+.btn[disabled],.btn:disabled{opacity:.5}
+.sugbtns button,.bot-say .bb button{background:#00537A!important;color:#fff!important}.sugbtns button.ghost{background:#dff5fb!important;color:#00537A!important}
+/* accents, headings, tags */
+h1.page-title,.alhead b,.loginbox h3,.shh,.odocs h3,.spopt legend,.pcard h3,.nwh{color:#013C58!important}.page-sub{color:#3d6275!important}
+.flv,.osc-t,.osp-now b,.osp-list li.now,.dpay.up,.chbtn,.zcell,.shtab{color:#00537A!important}
+.osc-bar i.now,.osp-bar i.now{background:#00537A!important}
+.brandlink .tag,.chip-user{background:#FFD35B!important;color:#013C58!important;border-color:rgba(1,60,88,.2)!important}
+.shtab,.zcell,.sugbtns button.ghost{background:#dff5fb!important}.chbtn{border-color:rgba(0,83,122,.4)!important}
+.alperm,.almore{background:#00537A!important;color:#fff!important}.alperm{background:#dff5fb!important;color:#00537A!important}
+.nwdate{background:linear-gradient(160deg,#00537A,#013C58)!important}
+input[type=checkbox],input[type=radio],input[type=range],.wi-final,#lv-h{accent-color:#00537A!important}
+tr.grp td{background:linear-gradient(90deg,rgba(0,83,122,.10),rgba(0,83,122,.02))!important;border-top-color:rgba(0,83,122,.14)!important}
+.loginbox,.odocs,.shcard,.nwcard,.icon-btn{background:#ffffff!important;border-color:#cdeaf3!important}
+.slip-h{border-bottom-color:#00537A!important}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #F5A201!important;outline-offset:2px}
+/* dashboard tiles: blue, amber, navy and yellow take turns (same size, same layout) */
+.kpis .kpi:nth-child(4n+1){background:linear-gradient(135deg,#0a6a98,#00537A)!important;color:#fff}
+.kpis .kpi:nth-child(4n+2){background:linear-gradient(135deg,#FFBA42,#F5A201)!important}
+.kpis .kpi:nth-child(4n+3){background:linear-gradient(135deg,#0a5b82,#013C58)!important;color:#fff}
+.kpis .kpi:nth-child(4n+4){background:linear-gradient(135deg,#FFE08A,#FFD35B)!important}
+.kpis .kpi:nth-child(4n+2) small,.kpis .kpi:nth-child(4n+2) span,.kpis .kpi:nth-child(4n+2) b,.kpis .kpi:nth-child(4n+4) small,.kpis .kpi:nth-child(4n+4) span,.kpis .kpi:nth-child(4n+4) b{color:#013C58!important}
+.kpis .kpi{box-shadow:0 18px 30px -18px rgba(1,60,88,.55)!important}
+.kpis .kpi:nth-child(4n+2)::after,.kpis .kpi:nth-child(4n+4)::after{background:rgba(1,60,88,.10)!important}
+th,.osm{color:#3d6275}
+/* the dealer top menu and table headings */
+.wrap > a:not(.btn){color:#0a4966}
+.wrap > a[aria-current="page"],.wrap > a.on{color:#013C58!important}
+table th,.tbl th{color:#3d6275!important}
+/* the Sales top bar now holds five items (CRM added): five equal columns, one row; the Field Sales bar holds two */
+.hnav{grid-template-columns:repeat(auto-fit,minmax(0,1fr))!important;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr)}
+@media(min-width:861px){.hnav a{font-size:.72rem;gap:7px;padding:6px 6px}}

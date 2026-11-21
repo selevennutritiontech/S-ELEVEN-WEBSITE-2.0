@@ -1,0 +1,66 @@
+S-ELEVEN: PRODUCTION PACKAGE (no demo data, no demo passwords)
+  1. Push this whole folder to GitHub (the .gitignore already keeps secrets out).
+  2. Follow DEPLOYMENT-GUIDE.md: website on Vercel, secure server (portal + admin) on your server/host.
+  3. The Host login is user ID ADMIN. Its password is the INITIAL_ADMIN_PASSWORD variable you set on the host. It is not in any file.
+  4. The system starts empty: only ADMIN, every product at 100 pcs, no dealers, employees or orders.
+  The portal does nothing when opened as a plain file: it needs the secure server (nothing is stored in a browser).
+==========================================================================================
+S-ELEVEN FINAL PACKAGE  -  departments and modules from the master prompt are now on screen
+==========================================================================================
+Folder 1  1-website-and-dealer-portal   website + Dealer Portal + Employee Portal + Eleven AI. OPEN index.html (Chrome/Edge). Footer: Dealer Login (there is no public Employee Login link: employees use the private address, see 4-secure-server/README.md)
+Folder 2  2-operations-platform-core    the tested database + rules engine (52 tests, load test, restore drill) that these screens mirror
+
+STARTING FROM ZERO (no sample data)
+ The first time this version opens in a browser it erases any old sample data in that browser, once. After that your own data is kept.
+ The only login at the start is the Host (user ID ADMIN). Its password is NOT in these files: you set it yourself as the INITIAL_ADMIN_PASSWORD variable on the server (see DEPLOYMENT-GUIDE.md).
+ Then: Team -> create employees (Sales, Logistics, Warehouse, Finance, HR, ...); Dealers -> create dealers (category + pincode picks the zone); Inventory -> add stock or upload a purchase bill.
+ Host footer buttons: "Erase all data (start from zero)" and "Load sample demo data". (Erase asks you to type ERASE.)
+
+WHAT YOU CAN NOW USE ON SCREEN  (every item below was driven end to end in a browser test)
+ FREEBIES (Sales + Host)      Freebies tab: create freebies (code, catalogue product, valuation rate, stock, max per order, eligible dealers, min order value, scheme cap, dates, active);
+                              your 15 allowance slabs (only the Host edits them); exclusions by product / brand / dealer. Combo-coupon lines are excluded automatically.
+                              DEALER: the cart shows "Free items for your order": allowance, pick items within it, never adds to the payable amount, stock reserved, shown on the order.
+                              SALES/HOST: Create order -> "Add freebies" next to the coupon, with the reason shown for any product that is not eligible.
+ INVENTORY                    one stock list; Logistics + Warehouse receive / adjust / quarantine (reason required, every change in a ledger with before/after); Sales and Finance view only;
+                              Host changes are a labelled "Host override"; negative stock is refused and flagged.
+ ORDER NOW / PREORDER         products out of stock show "Preorder (pay later)" (demo: BOLT Mass Gainer 5 LB, Pureluxe Protein Bar 12-pack, WHEYMILL Whey Isolate last pack).
+                              Receiving stock serves the oldest preorder first, reserves it, creates a payable order, notifies the dealer, gives a 2-hour payment window; price is locked at preorder time;
+                              unpaid ones expire and pass the stock on. Preorders count for targets only after payment.
+ WAREHOUSE (phone checklist)  Start packing opens a checklist: photo, name, ordered quantity, enter the quantity actually packed, "All N packed", report missing/damaged (notifies the Host),
+                              "Mark as packed" stays disabled until every quantity is verified and every problem resolved. Freebies are on the checklist. Shift lock + Host override as before.
+ ATTENDANCE (all but Host)    Clock in / Clock out button in the header and on "My attendance": 9:30-6:30, 1-hour lunch deducted once, 8 net hours, overtime, late and early are separate.
+                              Month view for the employee; the Host sees any employee's calendar (Team -> employee) and the HR attendance table.
+ HR (Host only)               attendance summaries and overtime, leave requests (approve/reject), balances, holidays, leave policy (days + carry-forward), attendance corrections, missing clock-outs.
+                              Leave: no overlaps, balance checked, an approval can happen once (no double deduction), approved leave shows in attendance.
+ BRANDING                     new department and login: directory, attendance, task tracking; no access to HR, Finance or inventory editing. Host can add Branding staff in Team.
+ SAMPLE tab                   create a free sample order, Host approves, Logistics/Warehouse move it to shipped/delivered; separate sample stock; no payment and no target credit.
+ CREATE ORDER (Sales/Host)    dealer profile, the assigned Sales employee (found automatically), order history beside the form, preorders.
+ PHONES                       every screen (about 40 incl. the new ones) was checked at 390 px: no sideways scrolling, 44 px tap targets. Two overflow bugs the audit found were fixed.
+
+IMPORTANT LIMITS
+ - These screens run on browser storage (a demonstration). The same rules are built and tested on a real PostgreSQL in folder 2, but the screens are NOT yet connected to it: that needs the API + login layer.
+ - Existing demo data in a browser is kept; the new modules are added on top (nothing is reset).
+ - Reminders and preorder expiry run while a browser tab is open; the real platform runs them on a server scheduler.
+ - Still needed before launch: API + login layer, payment-gateway account, GST e-invoice (IRN/QR), confirmed HSN codes, AI key for Eleven, email/WhatsApp provider, file storage, monitoring.
+ - Freebie qualifying value uses the dealer purchase prices as shown (GST-inclusive). Confirm if you want it before tax.
+
+GOING LIVE (website): upload everything in 1-website-and-dealer-portal to GitHub; Vercel redeploys. Platform core: docker compose up -d db; npm install; npm run db:migrate; npm test
+
+
+============================================================
+PUTTING THE PORTAL ON THE INTERNET (read this first)
+============================================================
+The portal only works with the secure server; opened as a plain file it shows no data and no login.
+
+For real use, run the secure server in the folder "4-secure-server". It stores passwords hashed, gives every person only the data
+they may see, locks accounts after repeated wrong passwords, hides the Google secret and sets security headers.
+Instructions: 4-secure-server/README.md   (needs a Linux server with Docker, a domain name and HTTPS).
+The security audit is in SECURITY-AUDIT-REPORT.md (section 12 describes the server and what is still limited).
+
+EMPLOYEE LOGIN ADDRESS (secure server): https://your-domain/access/employee-server  (you can change it with STAFF_PATH). Give it only to employees.
+
+NEW IN THIS VERSION: CRM (Sales top bar), Field Sales Consultants (created by the Host on the Field sales page), a new colour palette, and Google sheets that the server keeps up to date. See 4-secure-server/README.md section 7.
+
+VERSION 27: Field Sales Consultants are their own department (Team > Field Sales Consultants: zone, state, senior). See 4-secure-server/README.md section 9.
+
+VERSION 28: Google Authenticator for every department (Host: Security page; production default ON, demo OFF), commission set by the Host (percentage, fixed amount or order size), consultants simplified, Warehouse stock view-only, Eleven limited to your department, update pop-up with a preview. See 4-secure-server/README.md section 10.

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Portal | S-ELEVEN Nutrition</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b1b3a">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../dealer-portal/css/portal.css"><link rel="stylesheet" href="../dealer-portal/css/glass.css">
+<style>
+ .ep-hero{background:linear-gradient(135deg,#0b1b3a,#14357a);color:#fff;padding:54px 0 70px}
+ .ep-hero h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.02em}
+ .ep-hero p{margin-top:10px;max-width:42rem;color:#cfd9f2}
+ .ep-main{margin-top:-42px;padding-bottom:50px}
+ .ep-login{max-width:26rem;margin:0 auto;padding:28px}
+ .ep-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+ .ep-tile{display:block;padding:24px;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s}
+ a.ep-tile:hover{transform:translateY(-3px)}
+ .ep-tile h2{font-size:1.1rem;font-weight:800;color:var(--navy-900);margin:12px 0 6px}
+ .ep-tile p{font-size:.86rem;color:var(--slate);line-height:1.55}
+ .ep-tile .go{display:inline-block;margin-top:14px;font-weight:800;font-size:.84rem;color:var(--red)}
+ .ep-tile.locked{opacity:.55;background:#f4f6fb}.ep-tile.locked .go{color:var(--slate)}
+ .ep-ico{width:46px;height:46px;border-radius:14px;background:var(--blue-700);color:#fff;display:flex;align-items:center;justify-content:center}
+ .ep-ico svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+ .ep-bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:20px;color:#fff}
+ .ep-who{background:rgba(255,255,255,.12);padding:8px 14px;border-radius:999px;font-weight:700;font-size:.85rem}
+ .ep-foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin-top:30px;font-size:.84rem}
+ .ep-demo{margin-top:22px;font-size:.8rem;color:var(--slate)} .ep-demo code{background:var(--sky-100);padding:1px 6px;border-radius:6px}
+ .ep-brand{display:flex;gap:12px;align-items:center}.ep-brand img{height:38px;background:#fff;border-radius:8px;padding:4px 8px}
+</style>
+</head>
+<body>
+<header class="ep-hero"><div class="wrap">
+  <div class="ep-bar"><div class="ep-brand"><img id="logo" alt="S-ELEVEN"><b>Employee Portal</b></div><div id="who"></div></div>
+  <h1>One place for every S-ELEVEN team</h1>
+  <p>Sign in with your employee code to open your department's workspace: Sales, Logistics, Warehouse, Finance, or the Host console.</p>
+</div></header>
+<main class="ep-main"><div class="wrap" id="root"></div></main>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<script src="../dealer-portal/js/portable.js"></script>
+<script src="../dealer-portal/js/config.js"></script>
+<script src="../dealer-portal/js/data.js"></script>
+<script src="../dealer-portal/js/db.js"></script><script src="../dealer-portal/js/qrcode.js"></script><script src="../dealer-portal/js/auth.js"></script>
+<script>
+(function () {
+  'use strict';
+  document.getElementById('logo').src = SEL.LOGO;
+  var KEY = 'sel.v2.staff', staff = null; try { var s0 = sessionStorage.getItem(KEY); if (s0) staff = JSON.parse(s0); } catch (e) {} if (staff && !staff.tfa) staff = null;
+  var ADMIN = '../dealer-portal/admin/index.html', PORTAL = '../dealer-portal/index.html', SITE = '../index.html';
+  var ICON = {
+    host: '<path d="M12 2l9 4v6c0 5-3.5 8.5-9 10-5.5-1.5-9-5-9-10V6l9-4z"/><path d="M9 12l2 2 4-4"/>',
+    sales: '<circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.7 12.4a1 1 0 001 .8h8.9a1 1 0 001-.8L20 7H6"/>',
+    logistics: '<path d="M1 3h13v13H1z"/><path d="M14 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="17.5" cy="18.5" r="2"/>',
+    warehouse: '<path d="M3 9l9-6 9 6v11H3z"/><path d="M9 20v-6h6v6"/>',
+    finance: '<path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/>',
+    it: '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>', branding: '<path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/>', hr: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><path d="M17 11l2 2 3-4"/>', mywork: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' };
+  var DEPTS = [
+    { id: 'host', roles: ['admin'], name: 'Host / Admin', text: 'Company overview, create employees in any department and follow their work, set sales targets, dealers, offers, freebie slabs and posts.', href: ADMIN + '#/overview' },
+    { id: 'sales', roles: ['admin', 'employee'], name: 'Sales', text: 'Your targets and credits, dealers and their prices, offers, freebies, orders with dealer history, preorders, and sample orders.', href: ADMIN + '#/mydash', hostHref: ADMIN + '#/team/sales' },
+    { id: 'logistics', roles: ['admin', 'logistics'], name: 'Logistics', text: 'Orders after payment: courier and tracking, upload the invoice (and the e-way bill above \u20B950,000), inventory, sample orders and attendance.', href: ADMIN + '#/logistics' },
+    { id: 'warehouse', roles: ['admin', 'warehouse'], name: 'Warehouse', text: 'Orders to pack (phone checklist), inventory in / out / damaged / returned, sample orders and your attendance. Pending work shows in yellow and red.', href: ADMIN + '#/warehouse' },
+    { id: 'finance', roles: ['admin', 'finance'], name: 'Finance', text: 'Order value, GST split, collections, pending payments, brand and dealer sales, with filters and CSV export. Inventory view.', href: ADMIN + '#/finance' },
+    { id: 'it', roles: ['admin', 'it'], name: 'IT', text: 'Team, attendance and the tasks allocated to the IT department.', href: ADMIN + '#/it' },
+    { id: 'branding', roles: ['admin', 'branding'], name: 'Branding', text: 'Team directory, attendance, and task tracking for designers, editors, content and social media.', href: ADMIN + '#/branding' },
+    { id: 'hr', roles: ['admin'], name: 'HR (Host only)', text: 'Attendance for every employee, leave requests and balances, holidays, leave policy and attendance corrections.', href: ADMIN + '#/hr' },
+    { id: 'mywork', roles: ['employee', 'logistics', 'warehouse', 'finance', 'branding', 'it'], name: 'My attendance and leave', text: 'Clock in and out, see your month (9:30 to 6:30, 1-hour lunch), request leave and corrections.', href: ADMIN + '#/mywork' }
+  ];
+
+  var ROLE = { admin: 'Host / Admin', employee: 'Sales', logistics: 'Logistics', warehouse: 'Warehouse', finance: 'Finance', branding: 'Branding', it: 'IT' };
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function toast(t) { var d = document.createElement('div'); d.className = 'toast'; d.textContent = t; document.getElementById('toasts').appendChild(d); setTimeout(function () { d.remove(); }, 3200); }
+  function render() {
+    var root = document.getElementById('root'), who = document.getElementById('who');
+    if (!staff) {
+      who.innerHTML = ''; root.innerHTML = ''; var hostEl = document.createElement('div'); root.appendChild(hostEl);
+      Auth.mount(hostEl, function (st) { staff = st; render(); }, { title: 'Employee sign-in', hint: '<div class="ep-demo"><b>First sign-in</b><br>Host: user ID <code>ADMIN</code> with the password your IT team set on the server. The Host creates every other employee.</div>' });
+      var ft = document.createElement('div'); ft.innerHTML = foot(); root.appendChild(ft); return;
+    }
+    who.innerHTML = '<span class="ep-who">' + esc(staff.name) + ' \u00B7 ' + esc(ROLE[staff.role] || staff.role) + '</span> <button class="btn sm" id="out" style="margin-left:8px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55);box-shadow:none">Sign out</button>';
+    document.getElementById('out').addEventListener('click', function () { try { if (window.DB && DB.portalLogout) DB.portalLogout(staff.code); } catch (x) {} try { sessionStorage.removeItem(KEY); } catch (x) {} staff = null; render(); toast('Signed out'); });
+    root.innerHTML = '<div class="ep-grid">' + DEPTS.map(function (d) {
+      var ok = d.roles.indexOf(staff.role) > -1, ico = '<span class="ep-ico"><svg viewBox="0 0 24 24" aria-hidden="true">' + ICON[d.id] + '</svg></span>';
+      return ok ? '<a class="card ep-tile" href="' + (staff.role === 'admin' && d.hostHref ? d.hostHref : d.href) + '">' + ico + '<h2>' + d.name + '</h2><p>' + d.text + '</p><span class="go">Open ' + d.name + ' \u2192</span></a>'
+                : '<div class="card ep-tile locked" aria-disabled="true">' + ico + '<h2>' + d.name + '</h2><p>' + d.text + '</p><span class="go">Not available for your role</span></div>';
+    }).join('') + '</div>' + foot();
+  }
+  function foot() { return '<div class="ep-foot"><a href="' + PORTAL + '">Dealer portal</a><a href="' + SITE + '">S-ELEVEN website</a><span class="osm">Need access? Contact the Host: info@s-eleven.com</span></div>'; }
+  render();
+})();
+setInterval(function () { if (staff) { try { DB.portalSeen(staff.code); DB.reconcileAttendance(); } catch (x) {} } }, 15000);
+</script>
+</body>
+</html>

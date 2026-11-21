@@ -1,0 +1,48 @@
+/* v31 mobile / Android pass. Loaded last, so it only adds to and gently overrides the base styles.
+   Goals: no accidental sideways scroll, finger-sized tap targets, no 300ms tap delay, inputs that
+   do not force a zoom, horizontally scrollable tables, and bars that clear the phone's safe areas. */
+
+/* never let a wide element push the whole page sideways; tables and chip rows scroll on their own.
+   overflow-x:clip (not hidden) blocks the sideways scroll WITHOUT making <body> a scroll container,
+   so the sticky header, side menu and top nav keep sticking instead of scrolling away. */
+html, body { max-width: 100%; overflow-x: clip; -webkit-text-size-adjust: 100%; }
+.tblwrap { -webkit-overflow-scrolling: touch; }
+
+/* remove the tap delay and the grey flash on Android/Chrome for anything interactive */
+a, button, .btn, .icon-btn, input, select, textarea, [data-a], [data-act], [data-s], summary, .act, .fchip, .tabs a {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(29, 75, 168, .15);
+}
+
+/* bars that sit at the very bottom clear the home-indicator / gesture area on modern phones */
+.cartbar { padding-bottom: env(safe-area-inset-bottom, 0); }
+.ai-fab { bottom: calc(18px + env(safe-area-inset-bottom, 0)); }
+
+@media (max-width: 760px) {
+  /* a return/proof photo input and other file pickers must be easy to tap */
+  input[type="file"] { max-width: 100%; }
+  /* tables stay readable by scrolling sideways inside their own box, never the page */
+  .tbl { min-width: 560px; }
+  .tblwrap { overflow-x: auto; }
+}
+
+@media (max-width: 560px) {
+  /* 16px form text stops mobile browsers from zooming in when a field is focused */
+  .field input, .field select, .field textarea, .sel,
+  .search input, .coupon input, .ai-in input { font-size: 16px; }
+
+  /* finger-sized controls (Google's 48dp guidance): keep small buttons tappable */
+  .btn { min-height: 46px; }
+  .btn.sm { min-height: 42px; padding: 10px 16px; }
+  .icon-btn { min-height: 42px; }
+  .tabs a { padding-top: 15px; padding-bottom: 15px; }
+  .act, .chbtn { min-height: 40px; }
+  summary.order, details.order > summary { min-height: 44px; }
+
+  /* stack any two-column form grids into one column so nothing is cramped */
+  .fgrid { grid-template-columns: 1fr !important; }
+  /* action rows wrap instead of overflowing */
+  .rowbtns { flex-wrap: wrap; }
+  /* give the assistant panel the full width it needs on a phone */
+  .ai-panel { right: 8px; left: 8px; width: auto; }
+}

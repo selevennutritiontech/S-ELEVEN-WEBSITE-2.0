@@ -1,0 +1,10 @@
+**/node_modules
+**/.env
+**/test
+**/*.log
+2-operations-platform-core
+3-whatsapp-extension
+1-website-and-dealer-portal/employee
+1-website-and-dealer-portal/backend
+1-website-and-dealer-portal/OPEN-ME.html
+1-website-and-dealer-portal/README.md

@@ -1,0 +1,7 @@
+# HTTPS in front of the app (automatic certificates).
+# The app serves the website, the dealer portal and the private employee login from this one address.
+# Change portal.s-eleven.com to your portal address (its DNS A record must point to this server).
+portal.s-eleven.com {
+	encode gzip
+	reverse_proxy 127.0.0.1:8080
+}

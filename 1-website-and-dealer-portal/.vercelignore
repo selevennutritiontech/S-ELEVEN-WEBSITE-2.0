@@ -1,0 +1,5 @@
+# The live dealer portal and staff console run on the secure server (portal.s-eleven.com), never on Vercel.
+dealer-portal
+backend
+employee
+README.md

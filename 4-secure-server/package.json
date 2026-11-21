@@ -1,0 +1,12 @@
+{
+  "name": "seleven-secure-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "S-ELEVEN portal server: authentication, sessions, per-user data scoping, server-side permissions, rate limiting, security headers.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test --test-concurrency=1 test/*.test.js"
+  },
+  "dependencies": { "pg": "^8.13.0" }
+}

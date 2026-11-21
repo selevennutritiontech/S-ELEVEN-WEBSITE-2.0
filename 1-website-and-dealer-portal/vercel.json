@@ -1,0 +1,18 @@
+{
+  "redirects": [
+    { "source": "/backend/:path*", "destination": "/", "permanent": false },
+    { "source": "/README.md", "destination": "/", "permanent": false },
+    { "source": "/employee/:path*", "destination": "/", "permanent": false },
+    { "source": "/dealer-portal/admin/:path*", "destination": "/", "permanent": false },
+    { "source": "/dealer-portal", "destination": "https://portal.s-eleven.com/dealer-portal/", "permanent": false },
+    { "source": "/dealer-portal/:path*", "destination": "https://portal.s-eleven.com/dealer-portal/:path*", "permanent": false },
+    { "source": "/access/:path*", "destination": "/", "permanent": false }
+  ],
+  "headers": [
+    { "source": "/(.*)", "headers": [
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+      { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
+    ] }
+  ]
+}

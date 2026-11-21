@@ -1,0 +1,7 @@
+/* Checks that the browser can run the demo from local files and says so plainly if it cannot. */
+(function () {
+  function banner(t) { document.addEventListener('DOMContentLoaded', function () { var d = document.createElement('div'); d.setAttribute('role', 'alert'); d.style.cssText = 'position:fixed;left:0;right:0;top:0;z-index:999;background:#fff3cd;color:#5a3d00;padding:10px 16px;font:14px/1.4 system-ui,Segoe UI,Roboto,sans-serif;text-align:center;border-bottom:2px solid #e6b800'; d.innerHTML = t + ' <button type="button" style="margin-left:10px;padding:6px 12px;border-radius:8px;border:1px solid #c9a000;background:#fff;cursor:pointer;min-height:36px">Dismiss</button>'; d.querySelector('button').onclick = function () { d.remove(); }; document.body.appendChild(d); }); }
+  var ok = true; try { localStorage.setItem('sel.v2.probe', '1'); localStorage.removeItem('sel.v2.probe'); sessionStorage.setItem('sel.v2.probe', '1'); sessionStorage.removeItem('sel.v2.probe'); } catch (e) { ok = false; }
+  if (!ok) banner('This browser is blocking storage for local files, so the demo cannot save anything. Please open the files in Google Chrome or Microsoft Edge, or use the live site.');
+  else if (location.protocol === 'file:' && /Firefox\//.test(navigator.userAgent)) banner('Firefox treats every local file as a separate site, so the dealer portal, employee portal and admin console cannot share data. For the demo please use Google Chrome or Microsoft Edge, or open the live site.');
+})();

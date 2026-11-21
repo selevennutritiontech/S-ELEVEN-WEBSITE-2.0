@@ -1,0 +1,407 @@
+{
+ "updateShipment": {
+  "3": "by"
+ },
+ "setPacking": {
+  "3": "by"
+ },
+ "openShift": {
+  "0": "by"
+ },
+ "closeShift": {
+  "0": "by"
+ },
+ "logActivity": {
+  "0": "by"
+ },
+ "activity": {
+  "0": "by"
+ },
+ "setTarget": {
+  "4": "by"
+ },
+ "readStaffNotifs": {
+  "0": "userId"
+ },
+ "cancelPreorder": {
+  "1": "by"
+ },
+ "allocatePreorders": {
+  "0": "by"
+ },
+ "decideCorrection": {
+  "1": "by"
+ },
+ "decideLeave": {
+  "1": "by"
+ },
+ "receiveSampleStock": {
+  "2": "by"
+ },
+ "advanceSample": {
+  "2": "by",
+  "3": "role"
+ },
+ "startPacking": {
+  "2": "by"
+ },
+ "startPackingInner": {
+  "2": "by"
+ },
+ "verifyItem": {
+  "4": "by"
+ },
+ "reportDisc": {
+  "6": "by"
+ },
+ "notifyAction": {
+  "0": "by"
+ },
+ "attachInvoiceFile": {
+  "3": "by"
+ },
+ "attachEwayFile": {
+  "3": "by"
+ },
+ "stockIn": {
+  "2": "by"
+ },
+ "stockOutB": {
+  "2": "by"
+ },
+ "damageB": {
+  "2": "by"
+ },
+ "returnB": {
+  "2": "by"
+ },
+ "setBatchQ": {
+  "4": "by"
+ },
+ "countRequest": {
+  "2": "by"
+ },
+ "countDecide": {
+  "3": "by",
+  "4": "role"
+ },
+ "addProof": {
+  "3": "by",
+  "4": "role"
+ },
+ "verifyProof": {
+  "5": "by",
+  "6": "role"
+ },
+ "rejectProof": {
+  "4": "by",
+  "5": "role"
+ },
+ "markSeen": {
+  "2": "by"
+ },
+ "createNote": {
+  "2": "by",
+  "3": "role"
+ },
+ "recordRefund": {
+  "4": "by",
+  "5": "role"
+ },
+ "reverseEntry": {
+  "3": "by",
+  "4": "role"
+ },
+ "requestReturn": {
+  "4": "by",
+  "5": "role"
+ },
+ "decideReturn": {
+  "3": "by",
+  "4": "role"
+ },
+ "receiveReturn": {
+  "2": "by",
+  "3": "role"
+ },
+ "resolveInward": {
+  "3": "by",
+  "4": "role"
+ },
+ "issueReturnCredit": {
+  "2": "by",
+  "3": "role"
+ },
+ "saveIncPolicy": {
+  "1": "by"
+ },
+ "approveInc": {
+  "2": "by"
+ },
+ "confirmOrder": {
+  "2": "by"
+ },
+ "rzpCreate": {
+  "3": "by"
+ },
+ "rzpPaid": {
+  "3": "by"
+ },
+ "maskOrderFor": {
+  "0": "role"
+ },
+ "editProof": {
+  "4": "by",
+  "5": "role"
+ },
+ "bookRTO": {
+  "2": "by",
+  "3": "role"
+ },
+ "rtoUpdate": {
+  "2": "by",
+  "3": "role"
+ },
+ "issueReplacement": {
+  "2": "by",
+  "3": "role"
+ },
+ "attachSampleInvoice": {
+  "2": "by"
+ },
+ "startSamplePacking": {
+  "1": "by"
+ },
+ "verifySampleItem": {
+  "3": "by"
+ },
+ "finishSamplePacking": {
+  "1": "by"
+ },
+ "addPreorderBy": {
+  "2": "by"
+ },
+ "movePreorder": {
+  "1": "by"
+ },
+ "saveDealerAs": {
+  "1": "by",
+  "2": "role"
+ },
+ "editOrder": {
+  "3": "by",
+  "4": "role"
+ },
+ "cancelDiff": {
+  "2": "by"
+ },
+ "applyDiff": {
+  "2": "by"
+ },
+ "verifyReturnInward": {
+  "2": "by",
+  "3": "role"
+ },
+ "addPurchase": {
+  "2": "by"
+ },
+ "saveFreightSlabs": {
+  "1": "by"
+ },
+ "createPreorder": {
+  "2": "by"
+ },
+ "editPreorder": {
+  "2": "by"
+ },
+ "hrSign": {
+  "2": "by"
+ },
+ "decideAllow": {
+  "3": "by",
+  "4": "role"
+ },
+ "setSalary": {
+  "2": "by",
+  "3": "role"
+ },
+ "savePolicy": {
+  "2": "by",
+  "3": "role"
+ },
+ "alertsFor": {
+  "0": "user",
+  "1": "role"
+ },
+ "alertDone": {
+  "1": "user"
+ },
+ "alertDoneKey": {
+  "1": "user"
+ },
+ "proposeRevision": {
+  "3": "by",
+  "4": "role"
+ },
+ "cancelRevision": {
+  "2": "by"
+ },
+ "confirmRevision": {
+  "2": "by",
+  "3": "role"
+ },
+ "warehouseDispatch": {
+  "2": "by",
+  "3": "role"
+ },
+ "markDelivered": {
+  "2": "by",
+  "3": "role"
+ },
+ "markOutForDelivery": {
+  "2": "by",
+  "3": "role"
+ },
+ "setProductActive": {
+  "2": "by",
+  "3": "role"
+ },
+ "resetDealerPassword": {
+  "2": "by",
+  "3": "role"
+ },
+ "dealerLoginInfo": {
+  "1": "by",
+  "2": "role"
+ },
+ "saveLogisticsRate": {
+  "2": "by",
+  "3": "role"
+ },
+ "setWeight": {
+  "3": "by",
+  "4": "role"
+ },
+ "dispatchFrom": {
+  "3": "by",
+  "4": "role"
+ },
+ "setPackNote": {
+  "3": "by",
+  "4": "role"
+ },
+ "setTracking": {
+  "4": "by",
+  "5": "role"
+ },
+ "addExEmployee": {
+  "1": "by",
+  "2": "role"
+ },
+ "updateExEmployee": {
+  "2": "by",
+  "3": "role"
+ },
+ "markEmployeeLeft": {
+  "2": "by",
+  "3": "role"
+ },
+ "reinstateEmployee": {
+  "1": "by",
+  "2": "role"
+ },
+ "visibleTo": {
+  "0": "role"
+ },
+ "pushToWarehouse": {
+  "2": "by",
+  "3": "role"
+ },
+ "suspendEmployee": {
+  "2": "by",
+  "3": "role"
+ },
+ "transferEmployee": {
+  "2": "by",
+  "3": "role"
+ },
+ "setDealerActive": {
+  "3": "by",
+  "4": "role"
+ },
+ "addNews": {
+  "1": "by",
+  "2": "role"
+ },
+ "deleteNews": {
+  "1": "by",
+  "2": "role"
+ },
+ "listCrm": {
+  "0": "by",
+  "1": "role"
+ },
+ "getCrm": {
+  "1": "by",
+  "2": "role"
+ },
+ "saveCrm": {
+  "1": "by",
+  "2": "role"
+ },
+ "crmNote": {
+  "2": "by",
+  "3": "role"
+ },
+ "deleteCrm": {
+  "1": "by",
+  "2": "role"
+ },
+ "crmToDealer": {
+  "2": "by",
+  "3": "role"
+ },
+ "setFieldBrand": {
+  "4": "by",
+  "5": "role"
+ },
+ "addVisit": {
+  "1": "by",
+  "2": "role"
+ },
+ "listVisits": {
+  "0": "by",
+  "1": "role"
+ },
+ "requestRTO": {
+  "3": "by",
+  "4": "role"
+ },
+ "approveRTO": {
+  "4": "by",
+  "5": "role"
+ },
+ "fieldOrders": {
+  "0": "by",
+  "1": "role"
+ },
+ "submitPayShot": {
+  "3": "by"
+ },
+ "saveBrand": {
+  "1": "by",
+  "2": "role"
+ },
+ "removeBrand": {
+  "1": "by",
+  "2": "role"
+ },
+ "setBrandActive": {
+  "2": "by",
+  "3": "role"
+ },
+ "saveBrandInfo": {
+  "2": "by",
+  "3": "role"
+ }
+}

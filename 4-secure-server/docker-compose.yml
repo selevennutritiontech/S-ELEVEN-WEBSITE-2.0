@@ -1,0 +1,25 @@
+# Run from the package folder:  docker compose -f 4-secure-server/docker-compose.yml --env-file 4-secure-server/.env up -d --build
+# The database is NOT published to the network. Only the app is, and only on 127.0.0.1: put HTTPS in front (see deploy/Caddyfile).
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: seleven
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+      POSTGRES_DB: seleven
+    volumes: [dbdata:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U seleven"], interval: 10s, timeout: 5s, retries: 10 }
+  app:
+    build: { context: .., dockerfile: 4-secure-server/Dockerfile }
+    restart: unless-stopped
+    depends_on: { db: { condition: service_healthy } }
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgres://seleven:${DB_PASSWORD}@db:5432/seleven
+      APP_SECRET_KEY: ${APP_SECRET_KEY:?set APP_SECRET_KEY in .env}
+      INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD:-}
+      TRUST_PROXY: "1"
+      STAFF_PATH: ${STAFF_PATH:-/access/employee-server}
+    ports: ["127.0.0.1:8080:8080"]
+volumes: { dbdata: {} }

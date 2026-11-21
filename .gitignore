@@ -1,0 +1,9 @@
+# secrets: never commit these
+.env
+*.env
+!.env.example
+ADMIN-CREDENTIALS.txt
+# dependencies and noise
+node_modules/
+*.log
+.DS_Store
