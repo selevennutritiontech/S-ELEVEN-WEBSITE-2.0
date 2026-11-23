@@ -4,9 +4,13 @@
     { "source": "/README.md", "destination": "/", "permanent": false },
     { "source": "/employee/:path*", "destination": "/", "permanent": false },
     { "source": "/dealer-portal/admin/:path*", "destination": "/", "permanent": false },
-    { "source": "/dealer-portal", "destination": "https://portal.s-eleven.com/dealer-portal/", "permanent": false },
-    { "source": "/dealer-portal/:path*", "destination": "https://portal.s-eleven.com/dealer-portal/:path*", "permanent": false },
     { "source": "/access/:path*", "destination": "/", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/dealer-portal", "destination": "https://s-eleven-website-2-0.onrender.com/dealer-portal/" },
+    { "source": "/dealer-portal/:path*", "destination": "https://s-eleven-website-2-0.onrender.com/dealer-portal/:path*" },
+    { "source": "/bot-pilot/:path*", "destination": "https://s-eleven-website-2-0.onrender.com/bot-pilot/:path*" },
+    { "source": "/api/:path*", "destination": "https://s-eleven-website-2-0.onrender.com/api/:path*" }
   ],
   "headers": [
     { "source": "/(.*)", "headers": [
